@@ -4,6 +4,7 @@ const admin = require('firebase-admin');
 const express = require('express');
 const app = express();
 const port = 3000;
+rerquire('dotenv').config();
 
 
 
@@ -25,9 +26,9 @@ const port = 3000;
     });
 
     
-    const uid = 'Ap1WqskjRWNdlE1LnSw3uJKmKDT2'; // Eindeutige Benutzer-ID für den Admin
+    const uid = 'kaze'; // Eindeutige Benutzer-ID für den Admin
 
-    const additionalClaims = {zugelassen:true};
+    const additionalClaims = {admin:true};
     
     admin.auth().createCustomToken(uid, additionalClaims)
       .then((customToken) => {
@@ -45,7 +46,7 @@ const port = 3000;
         projectId: "datenweb-df16e",
         storageBucket: "datenweb-df16e.appspot.com",
         messagingSenderId: "375576281180",
-        appId: "1:375576281180:web:e0a5d4d0a3739a8b232699"
+        appId: "1:375576281180:web:b63ea5b9d1a63e2f232699"
       };
       
     
@@ -56,7 +57,7 @@ const port = 3000;
 
 function writeTo(name, mail, message) {
 
-    const reference = ref(database);
+    const reference = ref(database,"/admin");
 
     set(reference, {
         name: name,
