@@ -7,10 +7,6 @@ const port = 3000;
 const dataApp = require('firebase/app');
 const db = require('firebase/database');
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyD0jPbcEJnq_MH0NtZn2h8EGVCEUTOStak",
   authDomain: "datenweb-df16e.firebaseapp.com",
@@ -37,8 +33,6 @@ function writeTo(name,mail,message){
 }
 
 
-
-readCommentsFromFile().then(() => {
     app.get('/submitcomment/:name/:mail/:message', (req, res) => {
         const name = req.params.name;
         const mail = req.params.mail;
@@ -48,9 +42,6 @@ readCommentsFromFile().then(() => {
 
     });
 
-    app.listen(port, () => {
-        console.log(`Server läuft auf Port ${port}`);
-    });
-}).catch((err) => {
-    console.error('Fehler beim Starten des Servers:', err);
+app.listen(port, () => {
+    console.log(`Server läuft auf Port ${port}`);
 });
