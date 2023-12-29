@@ -27,7 +27,7 @@ readCommentsFromFile().then(() => {
             message: message
         };
 
-        commentsList.push(newComment);
+        commentsList.comments.push(newComment);
 
         fs.writeFile('data.json', JSON.stringify(commentsList, null, 2), 'utf8')
             .then(() => {
