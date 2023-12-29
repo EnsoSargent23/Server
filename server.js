@@ -28,7 +28,7 @@ require('dotenv').config();
     
     const uid = 'kaze'; // Eindeutige Benutzer-ID für den Admin
 
-    const additionalClaims = {admin:true};
+    const additionalClaims = {test:true};
     
     admin.auth().createCustomToken(uid, additionalClaims)
       .then((customToken) => {
