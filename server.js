@@ -20,17 +20,22 @@ const firebaseConfig = {
 // Initialize Firebase
 const dataAp = dataApp.initializeApp(firebaseConfig);
 
-function writeTo(name,mail,message){
-   
-    const reference = db.ref("comment/");
+function writeTo(name, mail, message) {
+    const reference = dataAp.database().ref("comment/");
 
-    db.getDatabase.set(reference, 
-    {
+    reference.set({
         name: name,
         mail: mail,
-        message:message
+        message: message
+    }, (error) => {
+        if (error) {
+            console.error('Error writing to the database:', error);
+        } else {
+            console.log('Data written to the database successfully.');
+        }
     });
 }
+
 
 
     app.get('/submitcomment/:name/:mail/:message', (req, res) => {
