@@ -5,13 +5,6 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-const database = getDatabase(dataApp);
-const uid = 'kaze'; // Eindeutige Benutzer-ID für den Admin
-const additionalClaims = {admin:true};
-
-
-
-
 
 
 admin.initializeApp({
@@ -32,12 +25,13 @@ admin.initializeApp({
     
 });
 
+const uid = 'kaze'; // Eindeutige Benutzer-ID für den Admin
+const additionalClaims = {admin:true};
 
 admin.auth().createCustomToken(uid, additionalClaims)
   .then((customToken) => {
-    if(customToken,admin == true){
+   
       console.log('Custom token for admin user:', customToken);
-    }
     
   })
   .catch((error) => {
@@ -56,6 +50,7 @@ admin.auth().createCustomToken(uid, additionalClaims)
   
 
   const dataApp = initializeApp(firebaseConfig);
+  const database = getDatabase(dataApp);
 
 
 function writeTo(name, mail, message) {
