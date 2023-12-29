@@ -4,7 +4,6 @@ const admin = require('firebase-admin');
 const express = require('express');
 const app = express();
 const port = 3000;
-require('dotenv').config();
 
 
 
@@ -24,6 +23,8 @@ require('dotenv').config();
               })
         
     });
+
+    console.log(process.env.TYPE_CRD);
 
     
     const uid = 'kaze'; // Eindeutige Benutzer-ID für den Admin
