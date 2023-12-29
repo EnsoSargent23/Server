@@ -39,6 +39,8 @@ const port = 3000;
       .catch((error) => {
         console.error('Error creating custom token:', error);
       });
+
+      
     
       const firebaseConfig = {
         apiKey: "AIzaSyD0jPbcEJnq_MH0NtZn2h8EGVCEUTOStak",
@@ -59,7 +61,7 @@ const port = 3000;
 function writeTo(name, mail, message) {
 
     console.log(reference)
-
+    admin.auth();
     set(reference, {
         admin:{
         name: name,
