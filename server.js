@@ -1,6 +1,42 @@
 const { initializeApp } = require('firebase/app');
 const { getDatabase, ref, set } = require('firebase/database');
+const admin = require('firebase-admin'); 
 const express = require('express');
+
+
+admin.initializeApp({
+    credential: admin.credential.cert(
+        {
+            "type": process.env.TYPE_CRD,
+            "project_id": process.env.PROJECT_ID_CRD,
+            "private_key_id": process.env.PRIVATE_KEY_ID_CRD,
+            "private_key": process.env.PRIVATE_KEY_CRD ,
+            "client_email": process.env.CLIENT_EMAIL_CRD,
+            "client_id": process.env.CLIENT_ID_CRD,
+            "auth_uri": process.env.AUTH_URI_CRD,
+            "token_uri": process.env.TOKEN_URI_CRD,
+            "auth_provider_x509_cert_url": process.env.AUTH_PROVIDER_X509_CERT_URL_CRD,
+            "client_x509_cert_url": process.env.CLIENT_X509_CERT_URL_CRD,
+            "universe_domain": process.env.UNIVERSE_DOMAIN_CRD
+          }
+    )
+});
+
+
+
+const uid = 'Kaze'; // Eindeutige Benutzer-ID für den Admin
+const additionalClaims = {
+  admin: true
+};
+
+admin.auth().createCustomToken(uid, additionalClaims)
+  .then((customToken) => {
+    console.log('Custom token for admin user:', customToken);
+  })
+  .catch((error) => {
+    console.error('Error creating custom token:', error);
+  });
+
 
 const app = express();
 const port = 3000;
