@@ -4,7 +4,7 @@ const admin = require('firebase-admin');
 const express = require('express');
 const app = express();
 const port = 3000;
-const dataApp = initializeApp(firebaseConfig);
+
 const database = getDatabase(dataApp);
 const uid = 'kaze'; // Eindeutige Benutzer-ID für den Admin
 const additionalClaims = {admin:true};
@@ -53,6 +53,10 @@ admin.auth().createCustomToken(uid, additionalClaims)
     messagingSenderId: "375576281180",
     appId: "1:375576281180:web:e0a5d4d0a3739a8b232699"
   };
+  
+
+  const dataApp = initializeApp(firebaseConfig);
+
 
 function writeTo(name, mail, message) {
     const reference = ref(database,"/admin");
