@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-function ini(){
+
 
     admin.initializeApp({
         credential: admin.credential.cert({
@@ -20,13 +20,13 @@ function ini(){
                 "auth_provider_x509_cert_url": process.env.AUTH_PROVIDER_X509_CERT_URL_CRD,
                 "client_x509_cert_url": process.env.CLIENT_X509_CERT_URL_CRD,
                 "universe_domain": process.env.UNIVERSE_DOMAIN_CRD
-              }),
-              databaseURL: "https://datenweb-df16e-default-rtdb.firebaseio.com"
+              })
         
     });
     
     const uid = 'some-uid'; // Eindeutige Benutzer-ID für den Admin
-    const additionalClaims = {admin:true};
+
+    const additionalClaims = {zugelassen:true};
     
     admin.auth().createCustomToken(uid, additionalClaims)
       .then((customToken) => {
@@ -51,13 +51,11 @@ function ini(){
       const dataApp = initializeApp(firebaseConfig);
       const database = getDatabase(dataApp);
 
-}
-
 
 
 function writeTo(name, mail, message) {
     ini()
-    const reference = ref(database,"/admin");
+    const reference = ref(database);
 
     set(reference, {
         name: name,
