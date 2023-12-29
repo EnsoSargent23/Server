@@ -24,7 +24,7 @@ const port = 3000;
         
     });
 
-    console.log(process.env.TYPE_CRD);
+    console.log(process.env.PROJECT_ID_CRD);
 
     
     const uid = 'kaze'; // Eindeutige Benutzer-ID für den Admin
@@ -34,7 +34,7 @@ const port = 3000;
     admin.auth().createCustomToken(uid, additionalClaims)
       .then((customToken) => {
        
-          console.log('Custom token for admin user:', customToken);
+          console.log('Custom token for admin user:', customToken.length);
       })
       .catch((error) => {
         console.error('Error creating custom token:', error);
@@ -53,12 +53,12 @@ const port = 3000;
     
       const dataApp = initializeApp(firebaseConfig);
       const database = getDatabase(dataApp);
-
+      const reference = ref(database);
 
 
 function writeTo(name, mail, message) {
 
-    const reference = ref(database,"/admin");
+    console.log(reference)
 
     set(reference, {
         name: name,
