@@ -58,13 +58,13 @@ const port = 3000;
       const reference = ref(database);
 
 
-      function writeTo(name, mail, message) {
+      function writeTo(name, mail, antwort) {
         const newReference = push(ref(database));
     
         set(newReference, {
             name: name,
             mail: mail,
-            message: message
+            antwort: antwort
         }).then(() => {
             console.log('Data written to the database successfully.');
         }).catch((error) => {
@@ -79,7 +79,7 @@ app.get('/submitcomment/:name/:mail/:message', (req, res) => {
     const message = req.params.message;
 
     writeTo(name, mail, message);
-    res.send('Comment submitted successfully.');
+    res.sendFile('response.html');
 });
 
 app.listen(port, () => {
