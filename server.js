@@ -19,11 +19,11 @@ async function readCommentsFromFile() {
 // Warte, bis die Kommentare aus der Datei gelesen wurden, bevor der Server startet
 readCommentsFromFile().then(() => {
     // Endpoint zum Entgegennehmen von Kommentaren
-    app.get('/submit-comment', (req, res) => {
+    app.get('/submit-comment/:name/:mail/:message', (req, res) => {
         // Entschlüsselung der Query-Parameter
-        const name = req.query.name;
-        const mail = req.query.mail;
-        const message = req.query.message;
+        const name = req.params.name;
+        const mail = req.params.mail;
+        const message = req.params.message;
 
         // Erstellen eines Kommentarobjekts
         const newComment = {
