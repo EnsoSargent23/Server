@@ -5,55 +5,58 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+function ini(){
 
-
-admin.initializeApp({
-    credential: admin.credential.cert({
-            "type": process.env.TYPE_CRD,
-            "project_id": process.env.PROJECT_ID_CRD,
-            "private_key_id": process.env.PRIVATE_KEY_ID_CRD,
-            "private_key": process.env.PRIVATE_KEY_CRD.replace(/\\n/g, '\n') ,
-            "client_email": process.env.CLIENT_EMAIL_CRD,
-            "client_id": process.env.CLIENT_ID_CRD,
-            "auth_uri": process.env.AUTH_URI_CRD,
-            "token_uri": process.env.TOKEN_URI_CRD,
-            "auth_provider_x509_cert_url": process.env.AUTH_PROVIDER_X509_CERT_URL_CRD,
-            "client_x509_cert_url": process.env.CLIENT_X509_CERT_URL_CRD,
-            "universe_domain": process.env.UNIVERSE_DOMAIN_CRD
-          }),
-          databaseURL: "https://datenweb-df16e-default-rtdb.firebaseio.com"
+    admin.initializeApp({
+        credential: admin.credential.cert({
+                "type": process.env.TYPE_CRD,
+                "project_id": process.env.PROJECT_ID_CRD,
+                "private_key_id": process.env.PRIVATE_KEY_ID_CRD,
+                "private_key": process.env.PRIVATE_KEY_CRD.replace(/\\n/g, '\n') ,
+                "client_email": process.env.CLIENT_EMAIL_CRD,
+                "client_id": process.env.CLIENT_ID_CRD,
+                "auth_uri": process.env.AUTH_URI_CRD,
+                "token_uri": process.env.TOKEN_URI_CRD,
+                "auth_provider_x509_cert_url": process.env.AUTH_PROVIDER_X509_CERT_URL_CRD,
+                "client_x509_cert_url": process.env.CLIENT_X509_CERT_URL_CRD,
+                "universe_domain": process.env.UNIVERSE_DOMAIN_CRD
+              }),
+              databaseURL: "https://datenweb-df16e-default-rtdb.firebaseio.com"
+        
+    });
     
-});
-
-const uid = 'kaze'; // Eindeutige Benutzer-ID für den Admin
-const additionalClaims = {admin:true};
-
-admin.auth().createCustomToken(uid, additionalClaims)
-  .then((customToken) => {
-   
-      console.log('Custom token for admin user:', customToken);
+    const uid = 'some-uid'; // Eindeutige Benutzer-ID für den Admin
+    const additionalClaims = {admin:true};
     
-  })
-  .catch((error) => {
-    console.error('Error creating custom token:', error);
-  });
+    admin.auth().createCustomToken(uid, additionalClaims)
+      .then((customToken) => {
+       
+          console.log('Custom token for admin user:', customToken);
+      })
+      .catch((error) => {
+        console.error('Error creating custom token:', error);
+      });
+    
+      const firebaseConfig = {
+        apiKey: "AIzaSyD0jPbcEJnq_MH0NtZn2h8EGVCEUTOStak",
+        authDomain: "datenweb-df16e.firebaseapp.com",
+        databaseURL: "https://datenweb-df16e-default-rtdb.firebaseio.com",
+        projectId: "datenweb-df16e",
+        storageBucket: "datenweb-df16e.appspot.com",
+        messagingSenderId: "375576281180",
+        appId: "1:375576281180:web:e0a5d4d0a3739a8b232699"
+      };
+      
+    
+      const dataApp = initializeApp(firebaseConfig);
+      const database = getDatabase(dataApp);
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyD0jPbcEJnq_MH0NtZn2h8EGVCEUTOStak",
-    authDomain: "datenweb-df16e.firebaseapp.com",
-    databaseURL: "https://datenweb-df16e-default-rtdb.firebaseio.com",
-    projectId: "datenweb-df16e",
-    storageBucket: "datenweb-df16e.appspot.com",
-    messagingSenderId: "375576281180",
-    appId: "1:375576281180:web:e0a5d4d0a3739a8b232699"
-  };
-  
+}
 
-  const dataApp = initializeApp(firebaseConfig);
-  const database = getDatabase(dataApp);
 
 
 function writeTo(name, mail, message) {
+    ini()
     const reference = ref(database,"/admin");
 
     set(reference, {
