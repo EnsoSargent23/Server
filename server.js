@@ -10,7 +10,7 @@ admin.initializeApp({
             "type": process.env.TYPE_CRD,
             "project_id": process.env.PROJECT_ID_CRD,
             "private_key_id": process.env.PRIVATE_KEY_ID_CRD,
-            "private_key": process.env.PRIVATE_KEY_CRD ,
+            "private_key": process.env.PRIVATE_KEY_CRD.replace(/\\n/g, '\n') ,
             "client_email": process.env.CLIENT_EMAIL_CRD,
             "client_id": process.env.CLIENT_ID_CRD,
             "auth_uri": process.env.AUTH_URI_CRD,
