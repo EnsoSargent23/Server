@@ -55,7 +55,7 @@ const dataApp = initializeApp(firebaseConfig);
 const database = getDatabase(dataApp);
 
 function writeTo(name, mail, message) {
-    const reference = ref(database);
+    const reference = ref(database,"/admin");
 
     set(reference, {
         name: name,
