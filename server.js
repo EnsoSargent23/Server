@@ -16,7 +16,7 @@ async function readCommentsFromFile() {
 }
 
 readCommentsFromFile().then(() => {
-    app.get('/submit-comment/:name/:mail/:message', (req, res) => {
+    app.get('/submitcomment/:name/:mail/:message', (req, res) => {
         const name = req.params.name;
         const mail = req.params.mail;
         const message = req.params.message;
