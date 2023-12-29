@@ -23,8 +23,9 @@ const port = 3000;
               })
         
     });
+
     
-    const uid = 'some-uid'; // Eindeutige Benutzer-ID für den Admin
+    const uid = 'Ap1WqskjRWNdlE1LnSw3uJKmKDT2'; // Eindeutige Benutzer-ID für den Admin
 
     const additionalClaims = {zugelassen:true};
     
