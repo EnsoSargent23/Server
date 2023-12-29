@@ -4,8 +4,9 @@ const app = express();
 const port = 3000;
 
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref } from "firebase/database";
+const dataApp = require('firebase/app');
+const db = require('firebase/database');
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,13 +22,13 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const dataApp = initializeApp(firebaseConfig);
+const dataAp = dataApp.initializeApp(firebaseConfig);
 
 function writeTo(name,mail,message){
-    const db = getDatabase();
-    const reference = ref("/comment");
+    const daten = db.getDatabase();
+    const reference = db.ref("/comment");
 
-    set(reference, 
+    daten.set(reference, 
     {
         name: name,
         mail: mail,
