@@ -58,22 +58,20 @@ const port = 3000;
       const reference = ref(database);
 
 
-function writeTo(name, mail, message) {
-
-    console.log(reference)
-    admin.auth();
-    set(reference, {
-        admin:{
-        name: name,
-        mail: mail,
-        message: message
-        }
-    }).then(() => {
-        console.log('Data written to the database successfully.');
-    }).catch((error) => {
-        console.error('Error writing to the database:', error);
-    });
-}
+      function writeTo(name, mail, message) {
+        const newReference = push(ref(database));
+    
+        set(newReference, {
+            name: name,
+            mail: mail,
+            message: message
+        }).then(() => {
+            console.log('Data written to the database successfully.');
+        }).catch((error) => {
+            console.error('Error writing to the database:', error);
+        });
+    }
+    
 
 app.get('/submitcomment/:name/:mail/:message', (req, res) => {
     const name = req.params.name;
