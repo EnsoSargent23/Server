@@ -11,6 +11,7 @@ async function readCommentsFromFile() {
     try {
         const data = await fs.readFile('data.json', 'utf8');
         commentsList = JSON.parse(data);
+        console.log("erfolgreich");
     } catch (error) {
         console.error('Fehler beim Lesen der Daten aus data.json:', error);
     }
@@ -34,7 +35,7 @@ readCommentsFromFile().then(() => {
 
         // Hinzufügen des Kommentars zur Liste
         commentsList.push(newComment);
-
+         console.log(commentsListd);
         // Speichern der aktualisierten Kommentarliste in der JSON-Datei
         fs.writeFile('data.json', JSON.stringify(commentsList, null, 2), 'utf8')
             .then(() => {
