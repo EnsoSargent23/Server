@@ -54,7 +54,7 @@ const port = 3000;
 
 
 function writeTo(name, mail, message) {
-    ini()
+
     const reference = ref(database);
 
     set(reference, {
