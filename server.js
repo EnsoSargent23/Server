@@ -61,9 +61,11 @@ function writeTo(name, mail, message) {
     console.log(reference)
 
     set(reference, {
+        admin:{
         name: name,
         mail: mail,
         message: message
+        }
     }).then(() => {
         console.log('Data written to the database successfully.');
     }).catch((error) => {
