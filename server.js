@@ -3,17 +3,39 @@ const fs = require('fs').promises;
 const app = express();
 const port = 3000;
 
-let commentsList = [];
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref } from "firebase/database";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-async function readCommentsFromFile() {
-    try {
-        const data = await fs.readFile('data.json', 'utf8');
-        commentsList = JSON.parse(data);
-        console.log("Datei erfolgreich gelesen");
-    } catch (error) {
-        console.error('Fehler beim Lesen der Daten aus data.json:', error);
-    }
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyD0jPbcEJnq_MH0NtZn2h8EGVCEUTOStak",
+  authDomain: "datenweb-df16e.firebaseapp.com",
+  databaseURL: "https://datenweb-df16e-default-rtdb.firebaseio.com",
+  projectId: "datenweb-df16e",
+  storageBucket: "datenweb-df16e.appspot.com",
+  messagingSenderId: "375576281180",
+  appId: "1:375576281180:web:e0a5d4d0a3739a8b232699"
+};
+
+// Initialize Firebase
+const dataApp = initializeApp(firebaseConfig);
+
+function writeTo(name,mail,message){
+    const db = getDatabase();
+    const reference = ref("/comment");
+
+    set(reference, 
+    {
+        name: name,
+        mail: mail,
+        message:message
+    });
 }
+
+
 
 readCommentsFromFile().then(() => {
     app.get('/submitcomment/:name/:mail/:message', (req, res) => {
@@ -21,22 +43,8 @@ readCommentsFromFile().then(() => {
         const mail = req.params.mail;
         const message = req.params.message;
 
-        const newComment = {
-            name: name,
-            mail: mail,
-            message: message
-        };
+        writeTo(name,mail,message);
 
-        commentsList.comments.push(newComment);
-
-        fs.writeFile('data.json', JSON.stringify(commentsList, null, 2), 'utf8')
-            .then(() => {
-                res.json({ success: true, message: 'Kommentar erfolgreich hinzugefügt', comments: commentsList });
-            })
-            .catch((err) => {
-                console.error('Fehler beim Speichern der Daten in data.json:', err);
-                res.status(500).json({ success: false, message: 'Fehler beim Speichern der Daten' });
-            });
     });
 
     app.listen(port, () => {

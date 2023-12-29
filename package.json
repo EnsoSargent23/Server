@@ -12,6 +12,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "fs": "^0.0.1-security"
+    "firebase": "^10.7.1",
+    "fs": "^0.0.1-security",
+    "webpack": "^5.89.0"
   }
 }
