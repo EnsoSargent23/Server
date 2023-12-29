@@ -21,9 +21,9 @@ readCommentsFromFile().then(() => {
     // Endpoint zum Entgegennehmen von Kommentaren
     app.get('/submit-comment', (req, res) => {
         // Entschlüsselung der Query-Parameter
-        const name = decodeURIComponent(req.query.name);
-        const mail = decodeURIComponent(req.query.mail);
-        const message = decodeURIComponent(req.query.message);
+        const name = req.query.name;
+        const mail = req.query.mail;
+        const message = req.query.message;
 
         // Erstellen eines Kommentarobjekts
         const newComment = {
