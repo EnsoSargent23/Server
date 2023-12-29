@@ -22,7 +22,7 @@ const dataAp = dataApp.initializeApp(firebaseConfig);
 
 function writeTo(name,mail,message){
    
-    const reference = db.ref("/comment");
+    const reference = db.ref("comment/");
 
     db.getDatabase.set(reference, 
     {
