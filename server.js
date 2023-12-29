@@ -5,8 +5,7 @@ const express = require('express');
 
 
 admin.initializeApp({
-    credential: admin.credential.cert(
-        {
+    credential: admin.credential.cert({
             "type": process.env.TYPE_CRD,
             "project_id": process.env.PROJECT_ID_CRD,
             "private_key_id": process.env.PRIVATE_KEY_ID_CRD,
@@ -18,8 +17,9 @@ admin.initializeApp({
             "auth_provider_x509_cert_url": process.env.AUTH_PROVIDER_X509_CERT_URL_CRD,
             "client_x509_cert_url": process.env.CLIENT_X509_CERT_URL_CRD,
             "universe_domain": process.env.UNIVERSE_DOMAIN_CRD
-          }
-    )
+          }),
+          databaseURL: "https://datenweb-df16e-default-rtdb.firebaseio.com"
+    
 });
 
 
