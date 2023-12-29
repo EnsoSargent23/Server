@@ -1,7 +1,6 @@
-
-import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, set } from 'firebase/database';
-import express from 'express';
+const { initializeApp } = require('firebase/app');
+const { getDatabase, ref, set } = require('firebase/database');
+const express = require('express');
 
 const app = express();
 const port = 3000;
