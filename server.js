@@ -54,7 +54,7 @@ admin.auth().createCustomToken(uid, additionalClaims)
 
 
 function writeTo(name, mail, message) {
-    const reference = ref(database,"admin/");
+    const reference = ref(database,"/admin");
 
     set(reference, {
         name: name,
