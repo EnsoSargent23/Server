@@ -21,10 +21,10 @@ const firebaseConfig = {
 const dataAp = dataApp.initializeApp(firebaseConfig);
 
 function writeTo(name,mail,message){
-    const daten = db.getDatabase();
+   
     const reference = db.ref("/comment");
 
-    daten.set(reference, 
+    db.getDatabase.set(reference, 
     {
         name: name,
         mail: mail,
